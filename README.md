@@ -9,11 +9,10 @@ as DeepL can get with some minor edits for things to make more sense, without ch
 User script is in the repository, I'll get this on extension stores etc when I can.
 
 ## What's not supported
-* Most if not all of the files index page, this is a limitation with the script due to BowlRoll's file index using JavaScript to request content on the client side
-* Same as above for the file pages themselves, although it is easier to navigate
+* File index page sorting and buttons, this is a limitation with the script due to BowlRoll's file index using JavaScript to request content on the client side, however some of the page works fine
+* File page passwords, tags and some buttons - same as above
 * Privacy Policy and Terms of Use pages - this is more of a legal thing as I feel I cannot make an accurate translation
-* About BowlRoll - translating this isn't particularly useful, but I might have a go later on
-* Contact Us - BowlRoll support likely won't respond to responses not in Japanese, therefore there is no use translating this page. This and the other 3 pages all have "(Japanese only)" next to their links, 
+* Contact Us - BowlRoll support likely won't respond to responses not in Japanese, therefore there is no use translating this page. This and the other 2 pages all have "(Japanese only)" next to their links, 
 similar to [niconico](https://nicovideo.jp/)'s English interface
 * Report file page - same as above
 * Probably file editing pages as I haven't uploaded any content myself, feel free to submit this
