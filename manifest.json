@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "bowlroll-english",
+  "version": "0.1.0",
+  "description": "Experimental extension to translate BowlRoll into English.",
+  "content_scripts": [
+    {
+      "matches": ["https://bowlroll.net/*"],
+      "js": ["bowlroll-english.user.js"]
+    }
+  ]
+}
