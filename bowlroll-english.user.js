@@ -8,31 +8,34 @@
 // @match        https://bowlroll.net/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bowlroll.net
 // @grant        none
-// @run-at       document-start
-// @copyright    2022+, David Ralph (https://github.com/vocauk/bowlroll-english)
+// @copyright 2022+, David Ralph (https://github.com/vocauk/bowlroll-english)
 // ==/UserScript==
 
 (function() {
    'use strict';
    const baseURL = 'https://bowlroll.net/';
 
-   // ON ALL PAGES //
-   // sidebar
-   const sidebarItems = document.querySelectorAll('.menu-item > a > span');
-   const otherSidebarItems = document.querySelectorAll('nav > .contents > a');
-   sidebarItems[0].textContent = 'Files';
-   sidebarItems[1].textContent = 'Help';
-   sidebarItems[2].textContent = 'Contact Us (Japanese only)';
-   otherSidebarItems[0].textContent = 'About BowlRoll';
-   otherSidebarItems[1].textContent = 'Terms of Use (Japanese only)';
-   otherSidebarItems[2].textContent = 'Privacy Policy (Japanese only)';
+   // ON ALL PAGES EXCEPT LOGIN AND 404 //
+   try {
+      // sidebar
+      const sidebarItems = document.querySelectorAll('.menu-item > a > span');
+      const otherSidebarItems = document.querySelectorAll('nav > .contents > a');
+      sidebarItems[0].textContent = 'Files';
+      sidebarItems[1].textContent = 'Help';
+      sidebarItems[2].textContent = 'Contact Us (Japanese only)';
+      otherSidebarItems[0].textContent = 'About BowlRoll';
+      otherSidebarItems[1].textContent = 'Terms of Use (Japanese only)';
+      otherSidebarItems[2].textContent = 'Privacy Policy (Japanese only)';
 
-   // user sidebar
-   sidebarItems[3].textContent = 'File Upload';
-   sidebarItems[4].textContent = 'My Submissions';
-   sidebarItems[5].textContent = 'Approved Submissions';
-   sidebarItems[6].textContent = 'Settings';
-   sidebarItems[7].textContent = 'Logout';
+      // user sidebar
+      sidebarItems[3].textContent = 'File Upload';
+      sidebarItems[4].textContent = 'My Submissions';
+      sidebarItems[5].textContent = 'Approved Submissions';
+      sidebarItems[6].textContent = 'Settings';
+      sidebarItems[7].textContent = 'Logout';
+   } catch(e) {
+     // fail silently
+   }
 
    // SPECIFIC PAGES //
    // profile
@@ -82,6 +85,11 @@
      } catch (e) {
       // this only appears on other's!
       document.querySelector('.tab-item > .badge').textContent = 'Latest Files';
+      try {
+       document.querySelector('a.common-btn').textContent = 'All Ages';
+      } catch (e) {
+       // doesn't show if signed out
+      }
      }
 
      document.querySelector('.tab-item > a').textContent = 'Home';
@@ -90,9 +98,18 @@
 
 
    // file and file index
-   // some of this page uses JS to get info, so it's not going to be possible to fully translate for a while
+   // some of these pages use JS to get info, so it's not going to be possible to fully translate for a while
    if (window.location.href.startsWith(baseURL + 'file/')) {
-     if (!window.location.href.includes('upload') && !window.location.href.includes('index')) {
+     document.querySelector('.common-btn').textContent = 'All Ages';
+     if (window.location.href.includes('tag')) {
+       document.title = 'Tag ' + document.title.replace('タグ検索: ', '');
+       document.querySelector('.h4 > span').textContent = 'Tag Search';
+     } else if (window.location.href.includes('keyword/')) {
+       document.title = 'Search ' + document.title.replace('キーワード検索: ', '');
+       document.querySelector('.h4 > span').textContent = 'Keyword Search';
+       document.getElementById('file-keyword-tag-button').textContent = 'Similar Tags';
+       document.getElementById('file-keyword-user-button').textContent = 'Contributing Users';
+     } else if (!window.location.href.includes('upload') && !window.location.href.includes('index')) {
         const share = document.getElementById('file-show-share-button');
         share.querySelector('span').textContent = 'Share';
         // this line below won't set - will look into later
@@ -122,7 +139,6 @@
        document.title = 'File List - BowlRoll';
        document.querySelector('.column > .btn > span').textContent = 'Upload';
        document.querySelector('.h4 > span').textContent = 'Click here to upload';
-       document.querySelector('.common-btn').textContent = 'All Ages';
        document.querySelector('.tab-item').textContent = 'Main Tags';
      }
    }
@@ -242,6 +258,14 @@
           aboutSystemCards[3].textContent = 'File Downloads';
           document.querySelector('.special-thanks > h3').textContent = 'Special Thanks';
           document.querySelector('.special-thanks > p').textContent = 'Users who supported BowlRoll with donations in its early days. (Other anonymous donors: 30 people)';
+          break;
+
+       case (baseURL + 'login'):
+          document.title = 'Login - BowlRoll';
+          document.querySelector('.inside > h1').textContent = 'Login';
+          document.querySelector('.inside > p').textContent = 'Click on a social icon below';
+          // seems to be JS
+          document.querySelector('.title > span').textContent = 'Notices';
           break;
 
        default:
