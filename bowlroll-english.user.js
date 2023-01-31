@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BowlRoll Translation
 // @namespace    https://bowlroll.net
-// @version      0.1.1
+// @version      0.1
 // @description  Experimental user script to translate BowlRoll into English
 // @author       David (VOCA-UK TEAM)
 // @license      CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
@@ -115,7 +115,7 @@
        document.querySelector('.h4 > span').textContent = 'Keyword Search';
        document.getElementById('file-keyword-tag-button').textContent = 'Similar Tags';
        document.getElementById('file-keyword-user-button').textContent = 'Contributing Users';
-     } else if (!window.location.href.includes('upload') && !window.location.href.includes('index')) {
+     } else if (!window.location.href.includes('upload') && !window.location.href.includes('index') && !window.location.href.includes('report')) {
         const share = document.getElementById('file-show-share-button');
         share.querySelector('span').textContent = 'Share';
         // this line below won't set - will look into later
@@ -141,6 +141,35 @@
         //const editTags = document.getElementById('file-show-tags-modal-button');
         //editTags.querySelector('span').textContent = 'Edit Tags';
         //document.querySelector('.side-files > h5 > a > span').textContent = 'View all';
+     } else if (window.location.href.includes('report')) {
+       document.title = 'Report a Problem - BowlRoll';
+       document.getElementById('page-nav-title').textContent = 'Report a Problem';
+       document.querySelector('.form-group > label').textContent = 'Target file';
+
+       document.querySelector('.explanation > h5').textContent = 'Reporting';
+       const conditions = document.querySelectorAll('.conditions > div > span');
+       const conditionRequired = document.querySelectorAll('.conditions > div > strong');
+       conditions[0].innerText = 'Description of the issue';
+       conditions[1].innerText = 'Details of the contents';
+       conditionRequired[0].innerText = 'Required';
+       conditionRequired[1].innerText = 'Optional';
+       document.querySelector('.supplement').innerText = 'If you have a problem with the file in question, please contact us using this form. When reporting, please describe the problem in detail so that BowlRoll can respond quickly. If you are the author of the original file, it would be helpful if you could also provide us with information that allows BowlRoll to verify your identity.';
+
+       document.querySelectorAll('.form-label')[0].innerText = 'Issue';
+       document.querySelectorAll('.form-label')[1].innerText = 'Details (Japanese Only)';
+       document.querySelector('.form-input-hint').innerText = 'Up to 1024 characters';
+
+       const formOptions = document.querySelectorAll('.form-radio');
+       formOptions[0].textContent = 'Violation of original file\'s terms of use.';
+       formOptions[1].textContent = 'Release of data ripped from commercial works.';
+       formOptions[2].textContent = 'Copyright Infringement';
+       formOptions[3].textContent = 'Publication of works containing excessive sexual or grotesque material.';
+       formOptions[3].textContent = 'Publication of works in breach of the rules for the publication of adult works.';
+       formOptions[4].textContent = 'Other conduct that constitutes a breach of BowlRoll\'s Terms of Use.';
+       formOptions[5].textContent = 'Other reason';
+
+       document.querySelector('.btn-primary > span').textContent = 'Submit';
+       document.querySelectorAll('.btn')[4].textContent = 'Reset';
      } else {
        document.title = 'File List - BowlRoll';
        document.querySelector('.column > .btn > span').textContent = 'Upload';
