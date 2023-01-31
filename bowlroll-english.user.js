@@ -102,7 +102,7 @@
 
    // file and file index
    // some of these pages use JS to get info, so it's not going to be possible to fully translate for a while
-   if (window.location.href.startsWith(baseURL + 'file/')) {
+   if (window.location.href.startsWith(baseURL + 'file/') && !window.location.href.includes('upload')) {
      document.querySelector('.common-btn').textContent = 'All Ages';
      if (window.location.href.includes('tag')) {
        document.title = 'Tag ' + document.title.replace('タグ検索: ', '');
