@@ -193,7 +193,7 @@
        case (baseURL + 'help/index'):
           document.title = 'Help - BowlRoll';
           document.querySelector('.overview').innerHTML = `<h3>Help</h3>Currently, BowlRoll has no help section.
-          <br/>This has been in place sine the release of BowlRoll.<br/>We plan to create help documentation in the next version. In the meantime,
+          <br/>This has been in place since the release of BowlRoll.<br/>We plan to create help documentation in the next version. In the meantime,
           if you don't know how to use BowlRoll, just do your best!<br/>If you still don't understand, ask a question on BowlRoll's Twitter account
           or contact us (Japanese only).`;
           document.querySelectorAll('.tile-title')[1].textContent = 'Contact Us (Japanese only)';
