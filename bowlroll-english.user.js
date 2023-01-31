@@ -94,6 +94,9 @@
 
      document.querySelector('.tab-item > a').textContent = 'Home';
      document.querySelector('.user-show-files > h3').textContent = 'Latest Files';
+      
+     const dateCreated = document.querySelector('#user-show-information-params > div:not(.bowlroll-id) > span');
+     dateCreated.textContent = dateCreated.textContent.replace('年', '/').split('月')[0];
    }
 
 
