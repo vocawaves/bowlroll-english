@@ -18,7 +18,6 @@ Download the ZIP from releases and import it into your browser (extension stores
 * Privacy Policy and Terms of Use pages - this is more of a legal thing as I feel I cannot make an accurate translation
 * Contact Us - BowlRoll support likely won't respond to responses not in Japanese, therefore there is no use translating this page. This and the other 2 pages all have "(Japanese only)" next to their links, 
 similar to [niconico](https://nicovideo.jp/)'s English interface
-* Report file page - same as above
 * Probably file editing pages as I haven't uploaded any content myself, feel free to submit this
 * R-18 pages - this is out of scope for the project as VOCA-UK has no use for it and I doubt it'd be allowed on extension stores
 
