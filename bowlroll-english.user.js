@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BowlRoll Translation
 // @namespace    https://bowlroll.net
-// @version      0.1
+// @version      0.1.1
 // @description  Experimental user script to translate BowlRoll into English
 // @author       David (VOCA-UK TEAM)
 // @license      CC-BY-NC-SA-4.0; https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
@@ -94,7 +94,6 @@
 
      document.querySelector('.tab-item > a').textContent = 'Home';
      document.querySelector('.user-show-files > h3').textContent = 'Latest Files';
-      
      const dateCreated = document.querySelector('#user-show-information-params > div:not(.bowlroll-id) > span');
      dateCreated.textContent = dateCreated.textContent.replace('年', '/').split('月')[0];
    }
@@ -102,8 +101,12 @@
 
    // file and file index
    // some of these pages use JS to get info, so it's not going to be possible to fully translate for a while
-   if (window.location.href.startsWith(baseURL + 'file/') && !window.location.href.includes('upload')) {
-     document.querySelector('.common-btn').textContent = 'All Ages';
+   if (window.location.href.startsWith(baseURL + 'file/')) {
+     try {
+       document.querySelector('.common-btn').textContent = 'All Ages';
+     } catch (e) {
+       // fail silently
+     }
      if (window.location.href.includes('tag')) {
        document.title = 'Tag ' + document.title.replace('タグ検索: ', '');
        document.querySelector('.h4 > span').textContent = 'Tag Search';
@@ -135,9 +138,9 @@
         fileInformation[4].textContent = 'SHA1 Checksum';
 
         // neither will these
-        const editTags = document.getElementById('file-show-tags-modal-button');
-        editTags.querySelector('span').textContent = 'Edit Tags';
-        document.querySelector('.side-files > h5 > a > span').textContent = 'View all';
+        //const editTags = document.getElementById('file-show-tags-modal-button');
+        //editTags.querySelector('span').textContent = 'Edit Tags';
+        //document.querySelector('.side-files > h5 > a > span').textContent = 'View all';
      } else {
        document.title = 'File List - BowlRoll';
        document.querySelector('.column > .btn > span').textContent = 'Upload';
@@ -193,7 +196,7 @@
        case (baseURL + 'help/index'):
           document.title = 'Help - BowlRoll';
           document.querySelector('.overview').innerHTML = `<h3>Help</h3>Currently, BowlRoll has no help section.
-          <br/>This has been in place since the release of BowlRoll.<br/>We plan to create help documentation in the next version. In the meantime,
+          <br/>This has been in place sine the release of BowlRoll.<br/>We plan to create help documentation in the next version. In the meantime,
           if you don't know how to use BowlRoll, just do your best!<br/>If you still don't understand, ask a question on BowlRoll's Twitter account
           or contact us (Japanese only).`;
           document.querySelectorAll('.tile-title')[1].textContent = 'Contact Us (Japanese only)';
